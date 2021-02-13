@@ -19,8 +19,11 @@ class App extends Component{
           .catch(err => console.log('get project: ERROR: ', err));
         }
     
-render()
+render() {
 
-
+    return (
+<div></div>
+    )
+}
 
 };
