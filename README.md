@@ -1,1 +1,1 @@
-# forEach
+# forEach scratch protect. Complete as documentation for future engineers.
