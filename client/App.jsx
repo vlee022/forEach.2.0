@@ -9,9 +9,9 @@ class App extends Component{
 
     componentDidMount() {
         console.log("inside component did mount")
-        fetch('/api')
+        fetch('/getDonations')
           .then(res => res.json())
-          .then((data) => {
+          .then((totals) => {
 
           })
           .catch(err => console.log('get project: ERROR: ', err));
@@ -24,7 +24,7 @@ render() {
             <div className="main">
                 <h1>Codesmith Alumni Scholarship</h1>
                 <p>info about scholarship info about scholarship info about scholarship info about scholarship info about scholarship info about scholarship</p>   
-                <h3 id="totalHomePage">Total Raised $</h3>
+                <h3 id="totalHomePage">Total Raised ${total}</h3>
             </div>
                 <div className="btn">
                     <button id="donateHome"> Donate </button>
