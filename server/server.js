@@ -4,6 +4,8 @@ const PORT = 3000;
 const app = express();
 // const apiRouter = require('./routes');
 
+const dataBaseController = require('./models/dataBaseController')
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -13,6 +15,9 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../index.html"));
 });
 
+app.get("/getDonations", dataBaseController.getDonations, (req,res) => {
+  res.status(200).json(res.locals.donations);
+})
 
 app.listen(PORT, () => { console.log(`Listening on port ${PORT}...`); });
 
