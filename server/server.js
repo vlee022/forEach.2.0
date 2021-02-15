@@ -21,6 +21,8 @@ app.get("/getDonations", dataBaseController.getDonations, (req,res) => {
   res.status(200).json(res.locals.donations);
 })
 
+
+
 app.listen(PORT, () => { console.log(`Listening on port ${PORT}...`); });
 
 module.exports = app;
