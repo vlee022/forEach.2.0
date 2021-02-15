@@ -4,10 +4,12 @@ const PORT = 3000;
 const app = express();
 // const apiRouter = require('./routes');
 
-const dataBaseController = require('./models/dataBaseController')
+const dataBaseController = require('./controllers/donationsController.js')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
 
 app.use('/build', express.static(path.resolve(__dirname , '../build')))
 
