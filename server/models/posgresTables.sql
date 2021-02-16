@@ -14,6 +14,7 @@ CREATE TABLE donations (
     email VARCHAR(80) not null,
     user_id int,
     FOREIGN KEY(user_id) REFERENCES users(_id)
+    ON DELETE SET NULL
 );
 
 
@@ -23,5 +24,5 @@ FROM "donations" ;
 
 
 - 'insert values into table'
-INSERT INTO donations1(name, amount, credit_card, phone_num, date, email, user_id)
+INSERT INTO donations(name, amount, credit_card, phone_num, date, email, user_id)
 VALUES ('lucas', '100', '152635241', '36042992', 'dec-12-2019', 'lucas@gitMasterGabi.com', 1)
