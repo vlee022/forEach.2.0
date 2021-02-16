@@ -33,7 +33,7 @@ module.exports = {
       
        publicPath: '/build',
        proxy: {
-           '/api': 'http://localhost:3000'
+           '/': 'http://localhost:3000'
        },
       hot: true,
       // port: 8080,

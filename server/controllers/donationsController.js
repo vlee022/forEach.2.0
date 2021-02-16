@@ -6,8 +6,8 @@ dataBaseController.getDonations = (req, res, next) => {
   const allDonations = 'SELECT sum(amount) FROM donations';
   db.query(allDonations)
   .then((data) => {
-      res.locals.donations = data.rows;
-      console.log(data.rows);
+      res.locals.donations = data.rows[0].sum;
+      console.log('this is res.locals:',res.locals.donations);
       return next()
   })
   .catch((err) => {
