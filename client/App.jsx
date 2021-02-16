@@ -13,6 +13,7 @@ class App extends Component{
         fetch('/getDonations')
           .then(res => res.json())
           .then((totals) => {
+              console.log('totals: ',totals)
               const totalRaised = totals;
               return this.setState({
                   ...this.state,
