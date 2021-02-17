@@ -5,6 +5,14 @@ const PORT = 3000;
 const app = express();
 // const apiRouter = require('./routes');
 
+// Build out router files 
+// Build out POST request for donation/sign up in api 
+// Build out POST request for sign/up in API 
+// Build out POST request for login 
+// GET REQUEST for user account data 
+// GET Request for shout outs / guestbook
+// Authentication for write access to guestbook 
+
 const dataBaseController = require('./controllers/donationsController.js')
 
 app.use(express.json());
@@ -24,7 +32,6 @@ app.post("/makeDonation", dataBaseController.makeDonation, (req, res) => {
   res.sendStatus(200);
 
 })
-
 
 
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));

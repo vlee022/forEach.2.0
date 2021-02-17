@@ -31,6 +31,4 @@ dataBaseController.makeDonation = (req, res, next) => {
   
 }
 
-
-
 module.exports = dataBaseController;
