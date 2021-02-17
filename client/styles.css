@@ -4,5 +4,10 @@ body {
 }
 
 img {
-  width: 20%;
+  width: 80%;
+}
+
+.info {
+  width: 70%;
+  border: 1px solid black;
 }
