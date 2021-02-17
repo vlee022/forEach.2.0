@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Navbar from '../components/home/Navbar';
-import Mainstage from '../components/home/Mainstage';
-import Info from '../components/home/Info';
-import TotalDonations from '../components/home/TotalDonations';
+import Navbar from '../components/home/Navbar.jsx';
+import Mainstage from '../components/home/Mainstage.jsx';
+import Info from '../components/home/Info.jsx';
+import TotalDonations from '../components/home/TotalDonations.jsx';
 
 class Homepage extends Component {
   constructor(props) {
