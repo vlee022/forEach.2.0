@@ -1,7 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import './stylesheets/styles.css';
 
 
 class Donations extends Component {
