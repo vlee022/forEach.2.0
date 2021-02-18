@@ -39,6 +39,9 @@ class Homepage extends Component {
           <Switch>
             <Route path="/" exact>
               <Mainstage mainstageForm={this.mainstageForm} />
+              <div className="home-bottom">
+                <Info />
+              </div>
             </Route>
             <Route path="/donate" exact component={Payments} />
             <Route path="/login" exact component={Login} />
