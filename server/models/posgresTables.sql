@@ -41,8 +41,8 @@ SELECT sum(amount)
 FROM "donations" ;
 
 - 'insert values into shoutouts'
-INSERT INTO shoutouts(_id ,shoutout ,claps_count ,user_id )
-VALUES (default, 'cohort 41 <3', default, '1')
+INSERT INTO shoutouts(_id, shoutout, claps_count, user_id )
+VALUES (default, 'cohort 41 <3', default, '5')
 
 - 'insert values into table'
 INSERT INTO donations(amount, f_name, l_name, billing_cc_num, billing_ccv, billing_mm, billing_yy, billing_country, billing_zip_code ,billing_name_on_card, phone_num, donation_date, email, user_id)
