@@ -19,6 +19,7 @@ class Homepage extends Component {
   }
 
   componentDidMount() {
+    
   }
 
   mainstageForm(amountInput, firstInput, lastInput) {
