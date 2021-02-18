@@ -35,6 +35,12 @@ CREATE TABLE donations (
   ON DELETE SET NULL
 );
 
+CREATE TABLE sessions (
+  _id SERIAL PRIMARY KEY,
+  user_id int,
+  FOREIGN KEY(user_id) REFERENCES users(_id)
+);
+
 
 - 'finds total amount of donations'
 SELECT sum(amount)

@@ -5,10 +5,10 @@ const md5 = require('md5');
 const bcrypt = require('bcrypt');
 const db = require('../models/databaseModel');
 
-const dataBaseController = {};
+const donationsController = {};
 const saltRounds = 10;
 
-dataBaseController.getDonationList = (req, res, next) => {
+donationsController.getDonationList = (req, res, next) => {
   const donationList = 'SELECT f_name, l_name, amount FROM donations ORDER BY donation_date';
   db.query(donationList)
     .then((data) => {
@@ -22,7 +22,7 @@ dataBaseController.getDonationList = (req, res, next) => {
     });
 };
 
-dataBaseController.getDonationTotal = (req, res, next) => {
+donationsController.getDonationTotal = (req, res, next) => {
   const allDonations = 'SELECT sum(amount) FROM donations';
   db.query(allDonations)
     .then((data) => {
@@ -36,7 +36,7 @@ dataBaseController.getDonationTotal = (req, res, next) => {
     });
 };
 
-dataBaseController.createDonation = (req, res, next) => {
+donationsController.createDonation = (req, res, next) => {
   // destructor request body
   const { amount, f_name, l_name, billing_mm, billing_yy, billing_country,
     billing_zip_code, billing_name_on_card, phone_num, email, anonymous, createUser } = req.body;
@@ -67,7 +67,7 @@ dataBaseController.createDonation = (req, res, next) => {
   // SEND BACK ERROR MESSAGE IF EMAIL ALREADY EXISTS AS USERNAME
 };
 
-module.exports = dataBaseController;
+module.exports = donationsController;
 
 // {
 //   "amount": 200,
