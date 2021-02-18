@@ -63,4 +63,22 @@ img {
   border-radius: 5px;
 }
 
+.donations-list {
+  padding-left: 0;
+}
+
+.donations-list .amount {
+  font-weight: bold;
+  padding-left: 0.5em;
+}
+
+.donors {
+  display: flex;
+  justify-content: space-between;
+}
+
+.donations-list li {
+  list-style-type: none;
+}
+
 /* End Total Donations */

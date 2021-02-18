@@ -66,7 +66,7 @@ class Homepage extends Component {
             </Route>
             <Route path="/donate" component={Payments} />
             <Route path="/login" component={Login} />
-            <Route path="/shoutouts" component={Shoutouts} />
+            {/* <Route path="/shoutouts" component={Shoutouts} /> */}
           </Switch>
         </Router>
       </div>
