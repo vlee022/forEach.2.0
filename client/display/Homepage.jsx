@@ -10,20 +10,35 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 class Homepage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      amount: null,
+      firstName: null,
+      lastName: null,
+    };
+    this.mainstageForm = this.mainstageForm.bind(this);
   }
 
   componentDidMount() {
   }
 
+  mainstageForm(amountInput, firstInput, lastInput) {
+    console.log('mainstageForm: amountInput', amountInput);
+    this.setState({
+      amount: amountInput,
+      firstName: firstInput,
+      lastName: lastInput,
+    });
+  }
+
   render() {
+    console.log(this.state);
     return (
       <div>
         <Router>
           <Navbar />
           <Switch>
             <Route path="/" exact>
-              <Mainstage />
+              <Mainstage mainstageForm={this.mainstageForm} />
             </Route>
             <Route path="/donate" exact component={Payments} />
             <Route path="/login" exact component={Login} />
