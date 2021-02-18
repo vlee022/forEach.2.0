@@ -23,6 +23,7 @@ app.use('/api', apiRouter);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
+  //res.status(200).send('Welcome to the server');
 });
 
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));

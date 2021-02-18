@@ -1,19 +1,19 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
-const dataBaseController = require('../controllers/donationsController.js');
+const donationsController = require('../controllers/donationsController.js');
 const userController = require('../controllers/usersController');
 const shoutoutsController = require('../controllers/shoutoutsController');
 
-router.get('/donations', dataBaseController.getDonationList, (req, res) => {
+router.get('/donations', donationsController.getDonationList, (req, res) => {
   res.status(200).json(res.locals.donationsList);
 });
 
-router.get('/donations/total', dataBaseController.getDonationTotal, (req, res) => {
+router.get('/donations/total', donationsController.getDonationTotal, (req, res) => {
   res.status(200).json(res.locals.donationsTotal);
 });
 
-router.post('/donations', dataBaseController.createDonation, userController.createUser, (req, res) => {
+router.post('/donations', donationsController.createDonation, userController.createUser, (req, res) => {
   res.status(200).json({ success: true, message: 'Donation and user created', donation: res.locals.inputDonation });
 });
 
@@ -35,6 +35,10 @@ router.post('/shoutouts', shoutoutsController.createShoutout, (req, res) => {
 
 router.post('/incrementclaps', shoutoutsController.incrementClaps, (req, res) => {
   res.status(200).json(res.locals.claps);
+});
+
+router.get('/accountDetails/:userID', userController.accountDetails, (req, res)=>{
+  res.status(200).json(res.locals.accountDetails);
 });
 
 module.exports = router;
