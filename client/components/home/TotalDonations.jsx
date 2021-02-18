@@ -1,5 +1,5 @@
 import React from 'react';
 
-const TotalDonations = () => <div>hello!</div>;
+const TotalDonations = () => <div>Total Donations Component</div>;
 
 export default TotalDonations;
