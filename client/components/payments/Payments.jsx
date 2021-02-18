@@ -1,179 +1,88 @@
-// import React from 'react';
+import React, { Component } from 'react';
 
-// class Payments extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       nameinput: '',
-//       donationAmount: '',
-//       creditCard: '',
-//       phone: '',
-//       date: '',
-//       email: '',
-//       username: '',
-//       password: '',
-//       totalRaised: '',
-//     };
-//     this.handleClick = this.handleClick.bind(this);
-//   }
+class Payments extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      amount: null,
+      f_name: '',
+      l_name: '',
+      billing_cc_num: null,
+      billing_cvv: null,
+      billing_mm: null,
+      billing_yy: null,
+      billing_country: '',
+      billing_zip_code: null,
+      billing_name_on_card: '',
+      phone_num: null,
+      email: '',
+      password: '',
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
 
-//   handleClick(event) {
-//     const donations = {
-//       nameinput: this.state.nameinput,
-//       // nameinput : document.getElementById("nameinput").value,
-//       donationAmount: this.state.donationAmount,
-//       creditCard: this.state.creditCard,
-//       phone: this.state.phone,
-//       date: this.state.date,
-//       email: this.state.emai,
-//     };
-//     const members = { username: this.state.username, password: this.state.password };
+  handleClick(e) {
+    e.preventDefault();
+    console.log('handle submit');
+    console.log('state after handleClick evt ===> ', this.state);
+    fetch('/api/donations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify(this.state),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .then(() => {
+        this.props.history.push('/shoutouts');
+      })
+      .catch((err) => console.log('Payments fetch /donations ERROR: ', err));
+  }
 
-//     preventDefault(event);
-//     fetch('/donate', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({ donations, members }),
-//     });
-//   }
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
 
-//   render() {
-//     return (
-//       <div>
-//         <form>
-//           <input
-//             type="text"
-//             id="nameinput"
-//             onChange={(evt) => {
-//               this.setState({
-//                 ...this.state,
-//                 nameinput: evt.target.value,
-//               });
-//             }}
-//           >
-//             name
-//           </input>
-
-//           <input
-//             type="text"
-//             id="donationAmount"
-//             onChange={(evt) => {
-//               this.setState({
-//                 ...this.state,
-//                 donationAmount: evt.target.value,
-
-//               });
-//             }}
-//           >
-//             {' '}
-//             donation amount
-//           </input>
-
-//           <input
-//             type="text"
-//             id="creditCard"
-//             onChange={(evt) => {
-//               this.setState({
-//                 ...this.state,
-//                 creditCard: evt.target.value,
-//               });
-//             }}
-//           >
-//             {' '}
-//             creditcard
-//           </input>
-
-//           <input
-//             type="text"
-//             id="phone"
-//             onChange={(evt) => {
-//               this.setState({
-//                 ...this.state,
-//                 phone: evt.target.value,
-//               });
-//             }}
-//           >
-//             {' '}
-//             phone number
-//             {' '}
-//           </input>
-
-//           <input
-//             type="text"
-//             id="date"
-//             onChange={(evt) => {
-//               this.setState({
-//                 ...this.state,
-//                 nameinput: evt.target.value,
-//               });
-//             }}
-//           >
-//             {' '}
-//             date
-//           </input>
-
-//           <input
-//             type="text"
-//             id="email"
-//             onChange={(evt) => {
-//               this.setState({
-//                 ...this.state,
-//                 email: evt.target.value,
-//               });
-//             }}
-//           >
-//             {' '}
-//             email
-//           </input>
-
-//           <input type="checkbox" onChange="">Would you like to become a member?</input>
-
-//           <input
-//             type="text"
-//             id="username"
-//             onChange={(evt) => {
-//               this.setState({
-//                 ...this.state,
-//                 username: evt.target.value,
-//               });
-//             }}
-//           >
-//             {' '}
-//             username
-//           </input>
-
-//           <input
-//             type="text"
-//             id="password"
-//             onChange={(evt) => {
-//               this.setState({
-//                 ...this.state,
-//                 password: evt.target.value,
-//               });
-//             }}
-//           >
-//             {' '}
-//             password
-//           </input>
-
-//           <button onClick={this.handleClick}>Submit</button>
-//         </form>
-//       </div>
-
-//     );
-//   }
-// }
-
-// export default Payments;
-
-import React from 'react';
-
-const Payments = () => (
-  <div>
-    Payments Component
-  </div>
-);
+  render() {
+    console.log('state', this.state);
+    const {
+      f_name,
+      l_name,
+      amount,
+      billing_cc_num,
+      billing_cvv,
+      billing_mm,
+      billing_yy,
+      billing_country,
+      billing_zip_code,
+      billing_name_on_card,
+      phone_num,
+      email,
+      password,
+    } = this.state;
+    return (
+      <div>
+        <input type="text" name="f_name" placeholder="First Name" value={f_name} onChange={this.onChange} />
+        <input type="text" name="l_name" placeholder="Last Name" value={l_name} onChange={this.onChange} />
+        <input type="number" name="amount" placeholder="Donation Amount" value={amount} onChange={this.onChange} />
+        <input type="number" name="billing_cc_num" placeholder="Card Number" value={billing_cc_num} onChange={this.onChange} />
+        <input type="number" name="billing_cvv" placeholder="CVV" value={billing_cvv} onChange={this.onChange} />
+        <input type="number" name="billing_mm" placeholder="Expiration Month" value={billing_mm} onChange={this.onChange} />
+        <input type="number" name="billing_yy" placeholder="Expiration Year" value={billing_yy} onChange={this.onChange} />
+        <input type="text" name="billing_country" placeholder="Billing Country" value={billing_country} onChange={this.onChange} />
+        <input type="number" name="billing_zip_code" placeholder="Zip Code" value={billing_zip_code} onChange={this.onChange} />
+        <input type="text" name="billing_name_on_card" placeholder="Name on Card" value={billing_name_on_card} onChange={this.onChange} />
+        <input type="number" name="phone_num" value={phone_num} placeholder="Phone Number" onChange={this.onChange} />
+        <input type="email" name="email" placeholder="Email" value={email} onChange={this.onChange} />
+        <input type="text" name="password" placeholder="Password" value={password} onChange={this.onChange} />
+        <button type="button" onClick={this.handleClick}>Submit</button>
+      </div>
+    );
+  }
+}
 
 export default Payments;
