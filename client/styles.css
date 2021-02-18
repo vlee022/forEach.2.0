@@ -1,4 +1,41 @@
 body {
+  box-sizing: border-box;
   background-color: white;
   margin: 0;
 }
+
+/* Nav Bar Styles */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80%;
+  margin:auto;
+}
+
+.nav-bar {
+  background-color: #0e2e77;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav a,
+nav ul li {
+  color: #ffff;
+  text-decoration: none;
+}
+
+nav a:hover,
+nav ul li:hover {
+  color: #57c0a9;
+}
+
+nav ul li {
+  list-style-type: none;
+  margin: 1em;
+  text-decoration: none;
+}
+
+/* End Nav Bar Styles */
