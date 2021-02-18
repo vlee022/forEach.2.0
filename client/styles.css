@@ -47,3 +47,38 @@ img {
   width: 70%;
   border: 1px solid black;
 }
+
+.home-bottom {
+  display: flex;
+  justify-content: center;
+}
+
+/* Total Donations */
+
+.donations-container {
+  padding: 0 1em;
+  box-shadow: 0 0.3125rem 1rem -0.1875rem rgb(0 0 0 / 20%);
+  background-color: #53bda6;
+  opacity: 0.8;
+  border-radius: 5px;
+}
+
+.donations-list {
+  padding-left: 0;
+}
+
+.donations-list .amount {
+  font-weight: bold;
+  padding-left: 0.5em;
+}
+
+.donors {
+  display: flex;
+  justify-content: space-between;
+}
+
+.donations-list li {
+  list-style-type: none;
+}
+
+/* End Total Donations */
