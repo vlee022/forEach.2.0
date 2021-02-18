@@ -58,7 +58,7 @@ dataBaseController.createDonation = (req, res, next) => {
     .then((response) => {
       res.locals.inputDonation = response.rows[0];
       if (createUser) return next();
-      return res.status(200).json(res.locals.inputDonation);
+      return res.status(200).json({ success: true, message: 'Donation created', donation: res.locals.inputDonation });
     })
     .catch((err) => {
       console.error(err);

@@ -35,11 +35,12 @@ userController.login = (req, res, next) => {
   const checkUser = 'SELECT user_name, password FROM users WHERE user_name = $1';
   db.query(checkUser, values)
     .then((data) => {
+      if (!data.rows[0]) res.status(404).json({ success: false, message: 'No username found in database' })
       const hash = data.rows[0].password; // get the password to use it inside the function
       // check if the hashed value inputted in password field matches the value stored in database
       bcrypt.compare(password, hash, ((err, results) => {
         if (results) return next();
-        return res.status(404).send('Wrong password');
+        return res.status(404).json({ success: false, message: 'Wrong password' });
       }));
     })
     .catch((err) => next({

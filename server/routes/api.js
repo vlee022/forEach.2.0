@@ -14,15 +14,15 @@ router.get('/donations/total', dataBaseController.getDonationTotal, (req, res) =
 });
 
 router.post('/donations', dataBaseController.createDonation, userController.createUser, (req, res) => {
-  res.status(200).json(res.locals.inputDonation);
+  res.status(200).json({ success: true, message: 'Donation and user created', donation: res.locals.inputDonation });
 });
 
 router.post('/signup', userController.createUser, (req, res) => {
-  res.status(200).json(res.locals.user);
+  res.status(200).json({ success: true, message: 'User created', user: res.locals.user });
 });
 
 router.post('/login', userController.login, (req, res) => {
-  res.status(200).send('You are logged in');
+  res.status(200).json({ success: true, message: 'Logged in!' });
 });
 
 router.get('/shoutouts', shoutoutsController.getShoutouts, (req, res) => {
