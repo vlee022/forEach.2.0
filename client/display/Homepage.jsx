@@ -45,7 +45,7 @@ class Homepage extends Component {
   }
 
   mainstageForm(amountInput, firstInput, lastInput) {
-    console.log('mainstageForm: amountInput', amountInput);
+    // console.log('mainstageForm: amountInput', amountInput);
     this.setState({
       amount: amountInput,
       f_name: firstInput,
@@ -55,7 +55,7 @@ class Homepage extends Component {
   }
 
   render() {
-    console.log('homepage state ===>', this.state);
+    // console.log('homepage state ===>', this.state);
     const {
       donations, totals, amount, f_name, l_name,
     } = this.state;

@@ -4,28 +4,14 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      f_name: '',
+      l_name: '',
       email: '',
       password: '',
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.loginClick = this.loginClick.bind(this);
+    this.createClick = this.createClick.bind(this);
     this.onChange = this.onChange.bind(this);
-  }
-
-  handleClick(e) {
-    e.preventDefault();
-    fetch('/api/donations', { /* ********************** NEED TO CHANGE POST ROUTES!!! ********************** */
-      method: 'POST',
-      headers: {
-        'Content-Type': 'Application/JSON',
-      },
-      body: JSON.stringify(this.state),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .then(() => {
-        this.props.history.push('/account');
-      })
-      .catch((err) => console.log('Login fetch /donations ERROR: ', err)); /* ********************** NEED TO CHANGE POST ROUTES!!! ********************** */
   }
 
   onChange(e) {
@@ -34,17 +20,62 @@ class Login extends Component {
     });
   }
 
+  loginClick(e) {
+    e.preventDefault();
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify(this.state),
+    })
+      .then((res) => res.json())
+      // .then((data) => console.log(data))
+      .then((data) => {
+        if (data.success === true) {
+          this.props.history.push('/account');
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch((err) => console.log('Login fetch /api/login ERROR: ', err));
+  }
+
+  createClick(e) {
+    e.preventDefault();
+    fetch('/api/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify(this.state),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success === true) {
+          this.props.history.push('/account');
+        } else {
+          alert('Failed to create user');
+        }
+      })
+      .catch((err) => console.log('Login fetch /api/signup ERROR: ', err));
+  }
+
   render() {
     const {
       email,
       password,
+      f_name,
+      l_name
     } = this.state;
     return (
       <div>
         <input type="email" name="email" placeholder="Email" value={email} onChange={this.onChange} />
         <input type="text" name="password" placeholder="Password" value={password} onChange={this.onChange} />
-        <button type="button" onClick={this.handleClick}>Login</button>
-        <button type="button" onClick={this.handleClick}>Create Account</button>
+        <input type="text" name="f_name" placeholder="First Name" value={f_name} onChange={this.onChange} />
+        <input type="text" name="l_name" placeholder="Last Name" value={l_name} onChange={this.onChange} />
+        <button type="button" onClick={this.loginClick}>Login</button>
+        <button type="button" onClick={this.createClick}>Create Account</button>
       </div>
     );
   }

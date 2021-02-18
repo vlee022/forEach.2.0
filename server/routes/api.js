@@ -13,16 +13,16 @@ router.get('/donations/total', donationsController.getDonationTotal, (req, res) 
   res.status(200).json(res.locals.donationsTotal);
 });
 
-router.post('/donations', donationsController.createDonation, userController.createUser, userController.setSSIDCookie, userController.linkUser, (req, res) => {
-  res.status(200).json(res.locals.inputDonation);
+router.post('/donations', donationsController.createDonation, userController.createUser, (req, res) => {
+  res.status(200).json({ success: true, message: 'Donation and user created', donation: res.locals.inputDonation });
 });
 
-router.post('/signup', userController.createUser, userController.setSSIDCookie, (req, res) => {
-  res.status(200).json(res.locals.user);
+router.post('/signup', userController.createUser, (req, res) => {
+  res.status(200).json({ success: true, message: 'User created', user: res.locals.user });
 });
 
-router.post('/login', userController.login, userController.setSSIDCookie, (req, res) => {
-  res.status(200).send('You are logged in');
+router.post('/login', userController.login, (req, res) => {
+  res.status(200).json({ success: true, message: 'Logged in!' });
 });
 
 router.get('/shoutouts', shoutoutsController.getShoutouts, (req, res) => {
