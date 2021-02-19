@@ -7,7 +7,9 @@ const userController = {};
 const saltRounds = 10;
 
 userController.createUser = (req, res, next) => {
-  const { email, password, f_name, l_name } = req.body;
+  const {
+    email, password, f_name, l_name,
+  } = req.body;
   res.locals.email = email;
 
   // console.log('req.body:', req.body);
@@ -15,8 +17,8 @@ userController.createUser = (req, res, next) => {
   const inputUser = 'INSERT INTO users (user_name, password, f_name, l_name) VALUES ($1, $2, $3, $4) RETURNING *';
 
   bcrypt.hash(password, saltRounds, ((err, hash) => {
-    const values = [email, hash, f_name, l_name]
-    //console.log("this is values", values)
+    const values = [email, hash, f_name, l_name];
+    // console.log("this is values", values)
     // query DB passing in user_name and password as variables and storing in res.locals
     db.query(inputUser, values)
       .then((data) => {
@@ -39,14 +41,14 @@ userController.login = (req, res, next) => {
   
   res.locals.email = email;
   const values = [email];
-  const checkUser = 'SELECT user_name, password FROM users WHERE user_name = $1';
+  const checkUser = 'SELECT _id, user_name, password FROM users WHERE user_name = $1';
   db.query(checkUser, values)
     .then((data) => {
-      if (!data.rows[0]) res.status(404).json({ success: false, message: 'No username found in database' })
+      if (!data.rows[0]) res.status(404).json({ success: false, message: 'No username found in database' });
       const hash = data.rows[0].password; // get the password to use it inside the function
       // check if the hashed value inputted in password field matches the value stored in database
       bcrypt.compare(password, hash, ((err, results) => {
-        if (results) return next();
+        if (results) return res.status(200).json({ success: true, userID: data.rows[0]._id, message: 'Logged in!' });
         return res.status(404).json({ success: false, message: 'Wrong password' });
       }));
     })
@@ -65,29 +67,29 @@ userController.linkUser = (req, res, next) => {
 
   db.query(query, [userID, donationID])
     .then(() => next())
-    .catch(err => next({
+    .catch((err) => next({
       log: 'Error in userController.linkUser',
       status: 400,
       message: { err },
     }));
 };
 
-userController.accountDetails = (req, res, next) => {
+userController.accountDetails = async (req, res, next) => {
 // Query SQL database for '_id, f_name, l_name, '
   const id = req.params.userID;
 
   const userQuery = 'SELECT _id, f_name, l_name, user_name FROM users WHERE _id = $1;';
   res.locals.accountDetails = {};
-  
-  db.query(userQuery, [id])
+
+  await db.query(userQuery, [id])
     .then((data) => {
       res.locals.accountDetails.user = data.rows[0];
-      console.log("accountDetails.user", res.locals.accountDetails);
+      console.log('accountDetails.user', res.locals.accountDetails);
     })
     .catch((err) => next(err));
 
   const donationsQuery = 'SELECT amount, donation_date FROM donations WHERE user_id = $1';
-  db.query(donationsQuery, [id])
+  await db.query(donationsQuery, [id])
     .then((data) => {
       res.locals.accountDetails.donations = data.rows;
       console.log('accountDetails.donations:', res.locals.accountDetails);
@@ -104,15 +106,14 @@ userController.accountDetails = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-// Call middleware after logging in OR sign up is successful 
+// Call middleware after logging in OR sign up is successful
 // Create a cookie named 'ssid' with a value that is equal to the _id of the user
 userController.setSSIDCookie = async (req, res, next) => {
-
   const idFromUsers = 'SELECT _id FROM users WHERE user_name = $1';
 
   await db.query(idFromUsers, [res.locals.email])
     .then((data) => {
-      res.locals.userId = data.rows[0]._id; 
+      res.locals.userId = data.rows[0]._id;
     })
     .catch((err) => next(err));
 
@@ -121,7 +122,6 @@ userController.setSSIDCookie = async (req, res, next) => {
   });
 
   return next();
-
 };
 
 // 1. Create a session database tied to the user_id
