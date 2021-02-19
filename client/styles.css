@@ -87,6 +87,7 @@ nav ul li {
 }
 
 nav button {
+  margin-right: 20px;
   margin-top: 0.8em;
   padding: 0.7rem 2rem;
   border: none;

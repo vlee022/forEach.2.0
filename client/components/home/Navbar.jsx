@@ -16,6 +16,9 @@ const Navbar = () => (
         <Link to="/login">
           <li>Login</li>
         </Link>
+        <a href="https://codesmith.io/">
+          <li>Codesmith</li>
+        </a>
       </ul>
     </nav>
   </div>
