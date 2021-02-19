@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SideBar = () => (
-  <div>
-    SideBar Component
-    <Link to="/donate"><p>link to donate</p></Link>
-    <Link to="/shoutouts"><p>link to shoutouts</p></Link>
+  <div className="account-sidebar">
+    <Link to="/donate"><button className="btn-sidebar">Donate</button></Link>
+    <br />
+    <Link to="/shoutouts"><button className="btn-sidebar">Shoutout</button></Link>
   </div>
 );
 
