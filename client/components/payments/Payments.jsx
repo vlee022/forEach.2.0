@@ -65,7 +65,8 @@ class Payments extends Component {
       password,
     } = this.state;
     return (
-      <div>
+      <div className="payments-container">
+        <h2>Donate</h2>
         <input type="text" name="f_name" placeholder="First Name" value={f_name} onChange={this.onChange} />
         <input type="text" name="l_name" placeholder="Last Name" value={l_name} onChange={this.onChange} />
         <input type="number" name="amount" placeholder="Donation Amount" value={amount} onChange={this.onChange} />

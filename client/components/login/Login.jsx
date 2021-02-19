@@ -69,13 +69,16 @@ class Login extends Component {
       l_name
     } = this.state;
     return (
-      <div>
+      <div className="login-container">
+        <h2>Login</h2>
         <input type="email" name="email" placeholder="Email" value={email} onChange={this.onChange} />
         <input type="text" name="password" placeholder="Password" value={password} onChange={this.onChange} />
         <input type="text" name="f_name" placeholder="First Name" value={f_name} onChange={this.onChange} />
         <input type="text" name="l_name" placeholder="Last Name" value={l_name} onChange={this.onChange} />
-        <button type="button" onClick={this.loginClick}>Login</button>
-        <button type="button" onClick={this.createClick}>Create Account</button>
+        <div className="login-buttons">
+          <button type="button" onClick={this.loginClick}>Login</button>
+          <button type="button" onClick={this.createClick}>Create Account</button>
+        </div>
       </div>
     );
   }

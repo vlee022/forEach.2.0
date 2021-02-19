@@ -17,6 +17,9 @@ const apiRouter = require('./routes/api.js');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serves static files in our client/assets folder
+app.use(express.static('client'));
+
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
 
 app.use('/api', apiRouter);

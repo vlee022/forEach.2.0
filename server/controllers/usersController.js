@@ -34,6 +34,9 @@ userController.createUser = (req, res, next) => {
 // login controller
 userController.login = (req, res, next) => {
   const { email, password } = req.body;
+
+  if (!email || !password) return res.status(404).json({ success: false, message: 'All fields must be entered' });
+  
   res.locals.email = email;
   const values = [email];
   const checkUser = 'SELECT user_name, password FROM users WHERE user_name = $1';

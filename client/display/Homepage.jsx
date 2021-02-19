@@ -60,7 +60,7 @@ class Homepage extends Component {
       donations, totals, amount, f_name, l_name,
     } = this.state;
     return (
-      <div>
+      <div className="login">
         <Router>
           <Navbar />
           <Switch>
