@@ -20,8 +20,10 @@ class Homepage extends Component {
       l_name: null,
       donations: [],
       totals: 0,
+      userID: 5,
     };
     this.mainstageForm = this.mainstageForm.bind(this);
+    this.updateUserID = this.updateUserID.bind(this);
   }
 
   componentDidMount() {
@@ -54,6 +56,14 @@ class Homepage extends Component {
     // send the user to /donate here
   }
 
+  // update userID upon log-in
+  updateUserID(id) {
+    this.setState((state) => ({
+      ...state,
+      userID: id,
+    }));
+  }
+
   render() {
     // console.log('homepage state ===>', this.state);
     const {
@@ -72,8 +82,8 @@ class Homepage extends Component {
               </div>
             </Route>
             <Route path="/donate" component={Payments} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/account" exact component={AccountInfo} />
+            <Route path="/login" exact render={() => <Login updateUserID={this.updateUserID} />} />
+            <Route path="/account" exact render={() => <AccountInfo userID={this.state.userID} />} />
             <Route path="/shoutouts" exact component={Shoutouts} />
           </Switch>
         </Router>

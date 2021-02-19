@@ -82,3 +82,49 @@ img {
 }
 
 /* End Total Donations */
+
+/* Account Details Page */
+
+.donations-table {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  width: 50%;
+}
+
+.shoutouts-table {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  width: 50%;
+}
+
+.user-details h2 {
+  font-size: 30px;
+}
+
+.account-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  width: 50%;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  background-color: rgba(240, 245, 249, 1);
+}
+
+.btn-sidebar {
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 10rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(0deg,#3da991,#71dac4);
+  color: #fff;
+  margin: 10px;
+}
+
+.table-cell {
+  border: 1px solid rgb(139, 156, 172);
+  padding: 5px;
+}

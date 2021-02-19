@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 
 class Login extends Component {
   constructor(props) {
@@ -30,7 +31,10 @@ class Login extends Component {
       body: JSON.stringify(this.state),
     })
       .then((res) => res.json())
-      // .then((data) => console.log(data))
+      .then((data) => {
+        if (data.success) this.props.updateUserID(data.userID);
+        return data;
+      })
       .then((data) => {
         if (data.success === true) {
           this.props.history.push('/account');
@@ -66,7 +70,7 @@ class Login extends Component {
       email,
       password,
       f_name,
-      l_name
+      l_name,
     } = this.state;
     return (
       <div>
@@ -81,4 +85,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
